@@ -1,5 +1,6 @@
 package com.example.catalog.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,14 +9,28 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.example.catalog.R
 import com.example.catalog.data.CatalogRepositoryImpl
+import com.example.catalog.di.DaggerCatalogComponent
 import com.example.catalog.ui.ProductItemView
+import com.example.core.di.NavigationDependencyHolder
 import com.example.core.domain.model.Product
 import com.example.core.observe
+import com.example.product_api.ProductNavigation
+import javax.inject.Inject
 
 class CatalogFragment : Fragment() {
     lateinit var viewModel: CatalogViewModel
 
     private var listView: LinearLayout? = null
+
+    @Inject
+    lateinit var productNavigation: ProductNavigation
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        DaggerCatalogComponent.factory().create(
+            (requireActivity() as NavigationDependencyHolder).getNavigationDependencyProvider()
+        ).inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +58,9 @@ class CatalogFragment : Fragment() {
             val view = ProductItemView(requireContext())
             listViewValue.addView(view)
             view.bind(product)
+            view.setOnClickListener {
+                productNavigation.openProduct()
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -36,6 +37,10 @@ android {
 }
 
 dependencies {
+    // Dagger
+    implementation("com.google.dagger:dagger:2.43.2")
+    kapt("com.google.dagger:dagger-compiler:2.43.2")
+
     // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
@@ -48,7 +53,10 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    implementation(project(":core"))
     implementation(project(":feature:catalog"))
     implementation(project(":feature:cart"))
     implementation(project(":feature:profile"))
+    implementation(project(":feature:product"))
+    implementation(project(":feature:product-api"))
 }

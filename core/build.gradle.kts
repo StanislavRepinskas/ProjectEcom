@@ -33,6 +33,8 @@ android {
 }
 
 dependencies {
+    // Dagger
+    implementation("com.google.dagger:dagger:2.43.2")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.core:core-ktx:1.12.0")

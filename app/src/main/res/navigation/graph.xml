@@ -15,4 +15,10 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.profile.ProfileFragment" />
+
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="com.example.product.ProductFragment">
+        <deepLink app:uri="@string/productFragmentUri" />
+    </fragment>
 </navigation>
