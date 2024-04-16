@@ -1,4 +1,4 @@
-package com.example.catalog.ui
+package com.example.core.ui
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.catalog.R
+import com.example.core.R
 import com.example.core.domain.model.Product
 
 class ProductItemView @JvmOverloads constructor(

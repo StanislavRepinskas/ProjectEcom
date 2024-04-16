@@ -9,13 +9,11 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.catalog.R
-import com.example.catalog.data.CatalogRepositoryImpl
 import com.example.catalog.di.DaggerCatalogComponent
-import com.example.catalog.ui.ProductItemView
+import com.example.core.ui.ProductItemView
 import com.example.core.di.NavigationDepsProvider
 import com.example.core.domain.model.Product
 import com.example.core.observe
-import com.example.product_api.ProductNavigation
 import javax.inject.Inject
 
 class CatalogFragment : Fragment() {
