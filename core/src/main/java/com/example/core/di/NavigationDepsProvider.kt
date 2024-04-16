@@ -4,6 +4,10 @@ import javax.inject.Provider
 
 typealias NavigationDependencyMap = Map<Class<*>, @JvmSuppressWildcards Provider<Any>>
 
-interface NavigationDependencyProvider {
+interface NavigationDepsProvider {
     fun provideNavigationMap(): NavigationDependencyMap
+
+    interface Holder {
+        fun getNavigationDepsProvider(): NavigationDepsProvider
+    }
 }

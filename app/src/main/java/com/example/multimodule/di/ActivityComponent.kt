@@ -2,8 +2,8 @@ package com.example.multimodule.di
 
 import androidx.navigation.NavController
 import com.example.core.di.ActivityScope
-import com.example.core.di.NavigationDependencyProvider
-import com.example.product.di.ProductNavigationModule
+import com.example.core.di.NavigationDepsProvider
+import com.example.multimodule.di.navigation.ProductNavigationModule
 import dagger.BindsInstance
 import dagger.Component
 
@@ -12,7 +12,7 @@ import dagger.Component
     dependencies = [AppComponent::class],
     modules = [ProductNavigationModule::class]
 )
-interface ActivityComponent : NavigationDependencyProvider {
+interface ActivityComponent : NavigationDepsProvider {
 
     @Component.Factory
     interface Factory {

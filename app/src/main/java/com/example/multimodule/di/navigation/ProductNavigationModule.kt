@@ -1,6 +1,6 @@
-package com.example.product.di
+package com.example.multimodule.di.navigation
 
-import com.example.product.ProductNavigationImpl
+import com.example.multimodule.navigation.ProductNavigationImpl
 import com.example.product_api.ProductNavigation
 import dagger.Binds
 import dagger.Module

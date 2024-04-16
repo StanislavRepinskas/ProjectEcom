@@ -2,15 +2,15 @@ package com.example.catalog.di
 
 import com.example.catalog.presentation.CatalogFragment
 import com.example.core.di.NavigationDependencyMap
-import com.example.core.di.NavigationDependencyProvider
+import com.example.core.di.NavigationDepsProvider
 import com.example.product_api.ProductNavigation
 import dagger.Component
 import dagger.Module
 import dagger.Provides
 
 @Component(
-    dependencies = [NavigationDependencyProvider::class],
-    modules = [NavigationModule::class]
+    dependencies = [NavigationDepsProvider::class],
+    modules = [CatalogModule::class, NavigationModule::class]
 )
 interface CatalogComponent {
 
@@ -19,7 +19,7 @@ interface CatalogComponent {
     @Component.Factory
     interface Factory {
         fun create(
-            navigationDependencyProvider: NavigationDependencyProvider
+            navigationDepsProvider: NavigationDepsProvider
         ): CatalogComponent
     }
 }

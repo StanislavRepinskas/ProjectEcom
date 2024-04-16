@@ -7,28 +7,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.catalog.R
 import com.example.catalog.data.CatalogRepositoryImpl
 import com.example.catalog.di.DaggerCatalogComponent
 import com.example.catalog.ui.ProductItemView
-import com.example.core.di.NavigationDependencyHolder
+import com.example.core.di.NavigationDepsProvider
 import com.example.core.domain.model.Product
 import com.example.core.observe
 import com.example.product_api.ProductNavigation
 import javax.inject.Inject
 
 class CatalogFragment : Fragment() {
-    lateinit var viewModel: CatalogViewModel
-
-    private var listView: LinearLayout? = null
 
     @Inject
-    lateinit var productNavigation: ProductNavigation
+    lateinit var viewModelFactory: CatalogViewModel.Factory
+
+    private val viewModel: CatalogViewModel by viewModels { viewModelFactory }
+
+    private var listView: LinearLayout? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         DaggerCatalogComponent.factory().create(
-            (requireActivity() as NavigationDependencyHolder).getNavigationDependencyProvider()
+            (requireActivity() as NavigationDepsProvider.Holder).getNavigationDepsProvider()
         ).inject(this)
     }
 
@@ -42,7 +44,6 @@ class CatalogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = CatalogViewModel(CatalogRepositoryImpl())
 
         listView = view.findViewById(R.id.fragment_catalog_list)
 
@@ -59,7 +60,7 @@ class CatalogFragment : Fragment() {
             listViewValue.addView(view)
             view.bind(product)
             view.setOnClickListener {
-                productNavigation.openProduct()
+                viewModel.onProductClick(product)
             }
         }
     }

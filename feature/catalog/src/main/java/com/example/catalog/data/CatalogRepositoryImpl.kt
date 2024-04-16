@@ -2,8 +2,9 @@ package com.example.catalog.data
 
 import com.example.catalog.domain.CatalogRepository
 import com.example.core.domain.model.Product
+import javax.inject.Inject
 
-class CatalogRepositoryImpl : CatalogRepository {
+class CatalogRepositoryImpl @Inject constructor() : CatalogRepository {
     override suspend fun getProducts(): List<Product> {
         var productId = 1L
         return listOf(
