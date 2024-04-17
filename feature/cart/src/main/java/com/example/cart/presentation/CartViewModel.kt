@@ -1,4 +1,4 @@
-package com.example.catalog.presentation
+package com.example.cart.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class CatalogViewModel(
+class CartViewModel(
     private val productsRepository: ProductsRepository,
     private val cartRepository: CartRepository,
     private val productNavigation: ProductNavigation
@@ -29,18 +29,24 @@ class CatalogViewModel(
 
     init {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                products = productsRepository.getProducts()
-            }
+            loadProducts()
             updateState()
         }
 
         viewModelScope.launch {
             cartRepository.getCartUpdateFlow().collect {
-                if(it > 0) {
+                if (it > 0) {
+                    loadProducts()
                     updateState()
                 }
             }
+        }
+    }
+
+    private suspend fun loadProducts() {
+        withContext(Dispatchers.IO) {
+            val cartProducts = cartRepository.getAllProductCount()
+            products = productsRepository.getProducts(cartProducts.map { it.productId })
         }
     }
 
@@ -84,7 +90,7 @@ class CatalogViewModel(
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return CatalogViewModel(productsRepository, cartRepository, productNavigation) as T
+            return CartViewModel(productsRepository, cartRepository, productNavigation) as T
         }
     }
 }

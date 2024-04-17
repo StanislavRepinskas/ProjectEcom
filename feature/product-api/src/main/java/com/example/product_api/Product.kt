@@ -1,4 +1,4 @@
-package com.example.core.domain.model
+package com.example.product_api
 
 data class Product(
     val id: Long,

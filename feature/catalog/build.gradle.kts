@@ -35,10 +35,13 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":feature:cart-api"))
     implementation(project(":feature:product-api"))
 
     implementation("com.google.dagger:dagger:2.43.2")
     kapt("com.google.dagger:dagger-compiler:2.43.2")
+
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
 
     implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")

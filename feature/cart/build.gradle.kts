@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -33,7 +34,15 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+    implementation(project(":feature:cart-api"))
+    implementation(project(":feature:product-api"))
 
+    // Dagger
+    implementation("com.google.dagger:dagger:2.43.2")
+    kapt("com.google.dagger:dagger-compiler:2.43.2")
+
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")

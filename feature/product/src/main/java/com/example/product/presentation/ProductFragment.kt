@@ -1,4 +1,4 @@
-package com.example.product
+package com.example.product.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.core.domain.model.Product
+import com.example.product_api.Product
+import com.example.product.R
 
 class ProductFragment : Fragment() {
 

@@ -5,15 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.core.di.NavigationDepsProvider
 import com.example.multimodule.di.DaggerActivityComponent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity(), NavigationDepsProvider.Holder {
+class MainActivity : AppCompatActivity() {
     private val component by lazy {
         DaggerActivityComponent.factory().create(
-            appComponent = (application as App).component,
-            nacController = findNavController(R.id.navHostFragment)
+            appComponent = (application as App).component
         )
     }
 
@@ -28,6 +26,4 @@ class MainActivity : AppCompatActivity(), NavigationDepsProvider.Holder {
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigation.setupWithNavController(navController)
     }
-
-    override fun getNavigationDepsProvider(): NavigationDepsProvider = component
 }

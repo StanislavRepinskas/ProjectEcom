@@ -1,7 +1,7 @@
 package com.example.product_api
 
-import com.example.core.domain.model.Product
+import androidx.navigation.NavController
 
 interface ProductNavigation {
-    fun openProduct(product: Product)
+    fun openProduct(navController: NavController, product: Product)
 }

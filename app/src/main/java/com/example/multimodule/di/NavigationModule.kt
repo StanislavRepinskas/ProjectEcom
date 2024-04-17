@@ -1,4 +1,4 @@
-package com.example.multimodule.di.navigation
+package com.example.multimodule.di
 
 import com.example.multimodule.navigation.ProductNavigationImpl
 import com.example.product_api.ProductNavigation
@@ -8,7 +8,7 @@ import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
 
 @Module
-interface ProductNavigationModule {
+interface NavigationModule {
     @Binds
     @IntoMap
     @ClassKey(ProductNavigation::class)

@@ -40,6 +40,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":feature:catalog"))
     implementation(project(":feature:cart"))
+    implementation(project(":feature:cart-api"))
     implementation(project(":feature:profile"))
     implementation(project(":feature:product"))
     implementation(project(":feature:product-api"))

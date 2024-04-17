@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.core.R
-import com.example.core.domain.model.Product
 
 class ProductItemView @JvmOverloads constructor(
     context: Context,
@@ -16,14 +15,12 @@ class ProductItemView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private var product: Product? = null
-
     private val nameView: TextView
     private val buyView: View
     private val counterView: View
-    private val plusView: ImageView
+    val plusView: ImageView
     private val countView: TextView
-    private val minusView: ImageView
+    val minusView: ImageView
 
     init {
         LayoutInflater.from(context).inflate(R.layout.product_item_view, this, true)
@@ -35,8 +32,8 @@ class ProductItemView @JvmOverloads constructor(
         minusView = findViewById(R.id.product_item_view_minus)
     }
 
-    fun bind(product: Product) {
-        this.product = product
-        nameView.text = product.name
+    fun bind(state: ProductItemState) {
+        nameView.text = state.name
+        countView.text = state.cartCount.toString()
     }
 }
