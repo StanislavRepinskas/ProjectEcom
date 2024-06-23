@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MultiModule"
+rootProject.name = "ProjectEcom"
 include(":app")
 include(":core")
 include("feature:cart")
